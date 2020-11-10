@@ -6,7 +6,6 @@
     font-family: Roboto, sans-serif;
 }
 
-
 /* Startgame pop up */
 body {
     display: flex;
@@ -77,8 +76,22 @@ p {
     color: #eeeeee;
 }
 
-/* Dark mode toggle */
+.game-button {
+	background-color:green;
+	border-radius:32px;
+	display: inline-block;
+	cursor:pointer;
+	color:#ffffff;
+    padding:32px 32px;
+    position: absolute;
+    text-decoration:none;
+    border: 0px;
+}
+.game-button:hover {
+	background-color:transparent;
+}
 
+/* Dark mode toggle */
 .toggle-area {
     display: flex;
     -webkit-box-align: center;
@@ -149,3 +162,55 @@ p {
  .slider.round:before {
     border-radius: 50%;
  }
+
+ .fade-out {
+    animation: fadeOut ease 8s;
+    -webkit-animation: fadeOut ease 8s;
+    -moz-animation: fadeOut ease 8s;
+    -o-animation: fadeOut ease 8s;
+    -ms-animation: fadeOut ease 8s;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
