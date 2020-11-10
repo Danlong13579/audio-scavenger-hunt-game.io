@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+        <title>Logo Reveal Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="game-root" class="game-root">
+            <div id="game-start" class="game-start">
+                <h2>Find the Logo</h2>
+                <!-- Add your text to this to the p tage below -->
+                <p>Drag you finger or mouse around the screen untill you find the invisable logo.</p>
+                <p>Make sure you turn your volume up before you start.</p>
+                <p>The closer you get the louder the heartbeat will sound.</p>
+                <button id="start" class="start-btn">Start Game</button>
+
+                <div class="toggle-area">
+
+                    <p>Light</p>
+
+                    <label class="switch">
+                        <input id="checkbox" type="checkbox">
+                        <span id="dark-mode" class="slider round"></span>
+                    </label> 
+
+                    <p>Dark</p>
+
+                </div>
+            </div>
+        </div>
+        <audio id="game-audio" preload="auto" loop>
+            <source src="./Heartbeat.mp3" type="audio/mpeg">
+        </audio>
+        <script type="text/javascript" src="index.js"></script>
+    </body>
+</html>
