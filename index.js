@@ -14,9 +14,14 @@ heartAudio.loop = true;
 // Game Start Button and Game Loop
 startButton.addEventListener('click', function(e) {
     console.log("Game Started")
+    // Remove game-root from the screen and setup
     document.getElementById('game-root').style = "display: none;"
+    NormalizeAudio()
 
+    // Check Platform for devices
     if (platform === 'iPad' || platform === 'iPod' || platform === 'iPhone' || platform === 'Android') {
+
+        // Logic for touchscreen devices
         document.body.addEventListener("touchstart", function(e) {  
             mouseUpdate(e)
             heartAudio.play()     
@@ -25,6 +30,8 @@ startButton.addEventListener('click', function(e) {
             heartAudio.pause()   
         })
     } else {
+
+        //Logic for the web
         document.body.addEventListener("mousemove", function(e) {
             mouseUpdate(e)
             heartAudio.play()
@@ -49,11 +56,6 @@ darkModeSwitch.addEventListener('click', function(e){
 } )
 
 // Functions
-function touchEnd(e){
-    e.preventDefault()
-    document.getElementById("mouseCords").innerHTML = "touch end"
-}
-
 function mouseUpdate(e){
     let x = e.clientX
     let y = e.clientY
@@ -61,11 +63,6 @@ function mouseUpdate(e){
     console.log(cords)
 }
 
-function playAudio(audio){
-    audio.play()
-}
-
-function NormalizeAudio(rate = 1.0, vol = 0.2){
-    heartAudio.playbackRate = rate
+function NormalizeAudio(vol = 0.2){
     heartAudio.volume = vol
 }
