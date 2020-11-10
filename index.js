@@ -17,9 +17,12 @@ startButton.addEventListener('click', function(e) {
     document.getElementById('game-root').style = "display: none;"
 
     if (platform === 'iPad' || platform === 'iPod' || platform === 'iPhone' || platform === 'Android') {
-        document.body.addEventListener("touchstart", function(e) {       
+        document.body.addEventListener("touchstart", function(e) {  
+            mouseUpdate(e)
+            heartAudio.play()     
         })
-        document.body.addEventListener("touchend", function(e) {    
+        document.body.addEventListener("touchend", function(e) { 
+            heartAudio.pause()   
         })
     } else {
         document.body.addEventListener("mousemove", function(e) {
