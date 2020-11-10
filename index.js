@@ -11,33 +11,26 @@ let startButton = document.getElementById('start')
 let heartAudio = document.getElementById('game-audio')
 heartAudio.loop = true;
 
-// Game Loop
-if (gameStart){
-    
-    if (platform === 'iPad' || platform === 'iPod' || platform === 'iPhone' || platform === 'Android') {
-        document.body.addEventListener("touchstart", function(e) {
-    
-        })
-        
-        document.body.addEventListener("touchend", function(e) {
-    
-        })
-    } else {
-        document.addEventListener("mousemove", function(e) {
-    
-        })
-        
-        document.addEventListener("mouseout", function(e) {
-    
-        })
-    }
-}
-
-// Game Start Button
+// Game Start Button and Game Loop
 startButton.addEventListener('click', function(e) {
-    gameStart = true
     console.log("Game Started")
     document.getElementById('game-root').style = "display: none;"
+
+    if (platform === 'iPad' || platform === 'iPod' || platform === 'iPhone' || platform === 'Android') {
+        document.body.addEventListener("touchstart", function(e) {       
+        })
+        document.body.addEventListener("touchend", function(e) {    
+        })
+    } else {
+        document.body.addEventListener("mousemove", function(e) {
+            mouseUpdate(e)
+            heartAudio.play()
+        })
+            
+        document.body.addEventListener("mouseout", function(e) {
+            heartAudio.pause()
+        })
+    }
 } )
 
 // Dark Mode Doggle
@@ -62,6 +55,7 @@ function mouseUpdate(e){
     let x = e.clientX
     let y = e.clientY
     let cords = `Cords X = ${x} and Y = ${y}`
+    console.log(cords)
 }
 
 function playAudio(audio){
