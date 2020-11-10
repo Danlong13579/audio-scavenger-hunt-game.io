@@ -3,7 +3,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
+    font-family: "Solido Condensed", Roboto, sans-serif;
+}
+@font-face {
+    font-family: "Fieldwork16-GeoBold", Roboto, sans-serif;
+    font-weight: normal;
+    src: url('./assets/fonts/Fieldwork16-GeoBold.otf')
+}
+
+@font-face {
+    font-family: "Solido Condensed", Roboto, sans-serif;
+    font-weight: bold;
+    src: url('./assets/fonts/Solido Condensed Light.otf')
 }
 
 /* Startgame pop up */
@@ -48,6 +59,7 @@ h2 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+    font-family: "Fieldwork16-GeoBold";
 }
 
 p {

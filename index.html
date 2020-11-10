@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
         <title>Logo Reveal Game</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
         <div id="game-root" class="game-root">
@@ -30,9 +30,23 @@
                 </div>
             </div>
         </div>
+        <!-- Main Audio Source -->
         <audio id="game-audio" preload="auto" loop>
-            <source src="./Heartbeat.mp3" type="audio/mpeg">
+            <source src="./audio/Heartbeat.mp3" type="audio/mpeg">
         </audio>
-        <script type="text/javascript" src="index.js"></script>
+        <!-- Audio Source for Apple -->
+        <audio id="audio-soft" preload="auto">
+            <source src="./audio/HeartbeatSoft.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio-low" preload="auto">
+            <source src="./audio/HeartbeatLow.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio-medium" preload="auto">
+            <source src="./audio/HeartbeatMedium.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio-loud" preload="auto">
+            <source src="./audio/HeartbeatLoud.mp3" type="audio/mpeg">
+        </audio>
+        <script type="text/javascript" src="./js/index.js"></script>
     </body>
 </html>
