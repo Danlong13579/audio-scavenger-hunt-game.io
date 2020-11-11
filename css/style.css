@@ -7,12 +7,12 @@
 }
 @font-face {
     font-family: "Fieldwork16-GeoBold";
-    src: url('/jsgames/assets/fonts/Fieldwork16-GeoBold.otf');
+    src: url('/find-the-logo/assets/fonts/Fieldwork16-GeoBold.otf');
 }
 
 @font-face {
     font-family: "Solido Condensed";
-    src: url('/jsgames/assets/fonts/Solido Condensed Light.otf');
+    src: url('/find-the-logo/assets/fonts/Solido Condensed Light.otf');
     letter-spacing: 0.2em; 
 }
 
@@ -171,63 +171,52 @@ p {
     transform: translateX(26px);
  }
   
- .slider.round {
+.slider.round {
     border-radius: 34px;
  }
   
- .slider.round:before {
+.slider.round:before {
     border-radius: 50%;
  }
 
- .fade-out {
-    animation: fadeOut ease 8s;
-    -webkit-animation: fadeOut ease 8s;
-    -moz-animation: fadeOut ease 8s;
-    -o-animation: fadeOut ease 8s;
-    -ms-animation: fadeOut ease 8s;
-}
+.win-screen {
+  background: url(/find-the-logo/assets/OnePurpse_White.png) no-repeat center center fixed; 
+  background-size: contain; 
+  -webkit-background-size: contain; 
+  -moz-background-size: contain; 
+  -o-background-size: contain;
+    width: 100vw;
+    height: 100vh;
+ }
 
-  @keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-}
+ .fade-in {
+  animation: fadeIn ease 10s;
+  -webkit-animation: fadeIn ease 10s;
+  -moz-animation: fadeIn ease 10s;
+  -o-animation: fadeIn ease 10s;
+  -ms-animation: fadeIn ease 10s;
+  }
+  @keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
   
-  @-moz-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-}
+  @-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
   
-  @-webkit-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-}
- 
-  @-o-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-}
+  @-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
   
-  @-ms-keyframes fadeOut {
-    0% {
-      opacity:1;
-    }
-    100% {
-      opacity:0;
-    }
-}
+  @-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }

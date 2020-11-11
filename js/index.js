@@ -7,6 +7,8 @@ let darkModeSwitch = document.getElementById('dark-mode')
 let startButton = document.getElementById('start')
 let gameButton = document.createElement('button')
 
+let winScreen = document.createElement('div')
+
 // Hidden button class setup
 gameButton.className = "game-button"
 let buttonX = Math.floor(Math.random() * (document.body.clientWidth - 32))
@@ -16,7 +18,7 @@ gameButton.style.left = buttonX + "px"
 gameButton.id = "game-button"
 
 // Audio Setup
-const heartAudio = document.querySelector('audio')
+let heartAudio = document.querySelector('audio')
 heartAudio.loop = true
 
 // Apple Audio
@@ -35,40 +37,47 @@ startButton.addEventListener('click', function(e) {
     // Remove game-root from the screen and setup
     document.getElementById('game-root').style = "display: none;"
     document.body.appendChild(gameButton)
-    audioCtx.resume()
-    
-    //Buffer for audio
+
 
     // Check Platform for devices
-    if (platform === 'Win32' || platform === 'Win16' || platform === '') {
+    if (platform === 'Win32' || platform === 'Win16' || platform === 'MacIntel' || platform === 'Linux x86_64' || platform === '') {
         //Logic for the web
-        document.body.addEventListener('mouseenter', function(e) {
+        audioCtx.resume()
+
+        document.body.addEventListener('mouseenter', () => {
             heartAudio.play()
         } )
 
-        document.body.addEventListener('mousemove', function(e) {
+        document.body.addEventListener('mousemove', (e) => {
+            heartAudio.play()
             MouseUpdate(e)
         } )
             
-        document.body.addEventListener("mouseout", function(e) {
+        document.body.addEventListener("mouseout", () => {
             heartAudio.pause()
         } )
 
+        //TODO End Game
         document.getElementById('game-button').addEventListener('mouseenter', function(e) {
-            GameSpace.style = "background-color: red;"
-            heartAudio.loop = false
-            heartAudio.pause()
+            heartAudio = null
+            document.body.removeChild(gameButton)
+            document.body.appendChild(winScreen)
+
+            GameSpace.style = 'background-color: #ffffff;'
+            winScreen.className += 'fade-in '
+            winScreen.className += 'win-screen'
         } )
 
     } else {
         // Logic for touchscreen devices
-        heartAudio.play()
         document.body.addEventListener("touchstart", function(e) {  
             e.preventDefault()
+            audioCtx.resume()
             heartAudio.play()
         }, { passive: false } )
         document.body.addEventListener('touchmove', function(e) {
             e.preventDefault()
+            heartAudio.play()
             TouchUpdate(e.touches[0])
 
         }, { passive: false } )
@@ -91,6 +100,15 @@ darkModeSwitch.addEventListener('click', function(e){
 } )
 
 // Functions
+
+function PlayMusic() {
+    heartAudio.play()
+}
+
+function PauseMusic() {
+    heartAudio.pause()
+}
+
 function MouseUpdate(e){
 
     // calculate the distance between the mouse or finger to the button on screen
@@ -144,7 +162,15 @@ function TouchUpdate(t){
        gainNode.gain.value = 0.2
     }
 
-    if (distance <= 25) {
-        GameSpace.style = "background-color: red;"
+    if (distance <= 55) {
+        heartAudio.pause()
+        heartAudio = null
+        audioCtx.suspend()
+        document.body.removeChild(gameButton)
+        document.body.appendChild(winScreen)
+
+        GameSpace.style = 'background-color: #ffffff;'
+        winScreen.className += 'fade-in '
+        winScreen.className += 'win-screen'
     } 
 }

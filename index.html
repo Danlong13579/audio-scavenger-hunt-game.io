@@ -2,20 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"> -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /> 
         <title>Logo Reveal Game</title>
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
         <div id="game-root" class="game-root">
             <div id="game-start" class="game-start">
+
+                <!-- Bold Header -->
                 <h2>Find the Logo</h2>
+
                 <!-- Add your text to this to the p tage below -->
                 <p>Drag you finger or mouse around the screen untill you find the invisable logo.</p>
                 <p>Make sure you turn your volume up before you start.</p>
                 <p>The closer you get the louder the heartbeat will sound.</p>
+
+                <!-- Start Game Button -->
                 <button id="start" class="start-btn">Start Game</button>
 
+                <!-- Dark Mode Toggle -->
                 <div class="toggle-area">
                     <p>Light</p>
 
@@ -30,8 +39,7 @@
         </div>
 
         <!-- Main Audio Source -->
-        <audio id="game-audio" src="./audio/HeartbeatSound.mp3" preload="metadata" type="audio/mpeg">
-        </audio>
+        <audio id="game-audio" src="HeartbeatSound-01.mp3" preload="metadata" type="audio/mpeg"></audio>
 
         <!-- Game Logic -->
         <script type="text/javascript" src="./js/index.js"></script>
