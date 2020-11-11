@@ -13,11 +13,10 @@
                 <!-- Add your text to this to the p tage below -->
                 <p>Drag you finger or mouse around the screen untill you find the invisable logo.</p>
                 <p>Make sure you turn your volume up before you start.</p>
-                <p>The closer you get the Louder the heartbeat will sound.</p>
+                <p>The closer you get the louder the heartbeat will sound.</p>
                 <button id="start" class="start-btn">Start Game</button>
 
                 <div class="toggle-area">
-
                     <p>Light</p>
 
                     <label class="switch">
@@ -26,27 +25,16 @@
                     </label> 
 
                     <p>Dark</p>
-
                 </div>
             </div>
         </div>
+
         <!-- Main Audio Source -->
-        <audio id="game-audio" preload="auto" loop>
-            <source src="./audio/Heartbeat.mp3" type="audio/mpeg">
+        <audio id="game-audio" src="./audio/HeartbeatSound.mp3" preload="metadata" type="audio/mpeg">
         </audio>
-        <!-- Audio Source for Apple -->
-        <audio id="audio-soft" preload="auto">
-            <source src="./audio/HeartbeatSoft.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="audio-low" preload="auto">
-            <source src="./audio/HeartbeatLow.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="audio-medium" preload="auto">
-            <source src="./audio/HeartbeatMedium.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="audio-loud" preload="auto">
-            <source src="./audio/HeartbeatLoud.mp3" type="audio/mpeg">
-        </audio>
+
+        <!-- Game Logic -->
         <script type="text/javascript" src="./js/index.js"></script>
+
     </body>
 </html>

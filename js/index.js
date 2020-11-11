@@ -1,12 +1,6 @@
 // Devices
 let platform = navigator.platform
 
-// Audio for Apple Devices
-let audioSoft = document.getElementById('audio-soft')
-let audioLow = document.getElementById('audio-low')
-let audioMedium = document.getElementById('audio-medium')
-let audioLoud = document.getElementById('audio-loud')
-
 // Elements
 let GameSpace = document.getElementsByTagName('body')[0]
 let darkModeSwitch = document.getElementById('dark-mode')
@@ -21,25 +15,39 @@ gameButton.style.top = buttonY + "px"
 gameButton.style.left = buttonX + "px"
 gameButton.id = "game-button"
 
-
 // Audio Setup
-let heartAudio = document.getElementById('game-audio')
+const heartAudio = document.querySelector('audio')
 heartAudio.loop = true
+
+// Apple Audio
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const source = audioCtx.createMediaElementSource(heartAudio);
+let gainNode = audioCtx.createGain();
+
+source.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+source.loop = true;
 
 // Game Start Button and Game Loop
 startButton.addEventListener('click', function(e) {
     console.log("Game Started")
-    NormalizeAudio()
+
     // Remove game-root from the screen and setup
     document.getElementById('game-root').style = "display: none;"
     document.body.appendChild(gameButton)
+    audioCtx.resume()
+    
+    //Buffer for audio
 
     // Check Platform for devices
-    if (platform === 'Win32' || platform === 'Win16' || platform === '' || platform === '') {
+    if (platform === 'Win32' || platform === 'Win16' || platform === '') {
         //Logic for the web
-        document.body.addEventListener("mousemove", function(e) {
+        document.body.addEventListener('mouseenter', function(e) {
+            heartAudio.play()
+        } )
+
+        document.body.addEventListener('mousemove', function(e) {
             MouseUpdate(e)
-            heartAudio.play() 
         } )
             
         document.body.addEventListener("mouseout", function(e) {
@@ -53,23 +61,21 @@ startButton.addEventListener('click', function(e) {
         } )
 
     } else {
-
         // Logic for touchscreen devices
+        heartAudio.play()
         document.body.addEventListener("touchstart", function(e) {  
             e.preventDefault()
-            TouchUpdate(e.touches[0])     
-        } )
+            heartAudio.play()
+        }, { passive: false } )
         document.body.addEventListener('touchmove', function(e) {
             e.preventDefault()
             TouchUpdate(e.touches[0])
-        } )
+
+        }, { passive: false } )
         document.body.addEventListener("touchend", function(e) { 
             e.preventDefault() 
-        } )
-
-        document.getElementById('game-button').addEventListener('touchmove', function(e) {
-            GameSpace.style = "background-color: red;"
-        } )
+            heartAudio.pause()
+        }, { passive: false } )
     }
 } )
 
@@ -95,22 +101,22 @@ function MouseUpdate(e){
     // TODO calc distance % to button area including screen space and adjust audio
     let zones = document.body.clientWidth / 8
     if ( distance < (zones / 2) ) {
-        NormalizeAudio(1)
+        gainNode.gain.value = 1
         console.log("audio 1")
     } 
     else if ( distance < (zones * 2) ) {
-        NormalizeAudio(0.6)
+        gainNode.gain.value = 0.4
         console.log("audio .6")
     } 
     else if ( distance < (zones * 3) ) {
-        NormalizeAudio(0.4)
+        gainNode.gain.value = 0.2
         console.log("audio .4")
     }
     else if ( distance < (zones * 4) ) {
-        NormalizeAudio(0.2)
+        gainNode.gain.value = 0.1
     } 
     else {
-        NormalizeAudio(0.1)
+        gainNode.gain.value = 0.1
     }
 }
 
@@ -123,38 +129,22 @@ function TouchUpdate(t){
     // TODO Make different audio files with volume change for apple devices
     let zones = document.body.clientWidth / 8
     if ( distance < (zones / 1.5) ) {
-        AudioSwap(audioLoud)
-        AudioStop(audioMedium, audioLow, audioSoft)
+       gainNode.gain.value = 1.0
     } 
     else if ( distance < (zones * 2) ) {
-        AudioSwap(audioMedium)
-        AudioStop(audioLoud, audioLow, audioSoft)
+       gainNode.gain.value = 0.8
     } 
     else if ( distance < (zones * 3) ) {
-        AudioSwap(audioLow)
-        AudioStop(audioLoud, audioMedium, audioSoft)
+       gainNode.gain.value = 0.6
     }
     else if ( distance < (zones * 4) ) {
-        AudioSwap(audioSoft)
-        AudioStop(AudioLoud, audioMedium, audioLow)
+       gainNode.gain.value = 0.4
     } 
     else {
-        AudioSwap(audioSoft)
-        AudioStop(AudioLoud, audioMedium, audioLow)
+       gainNode.gain.value = 0.2
     }
-}
 
-function AudioSwap(a) {
-    a.play()
-}
-
-function AudioStop(a1, a2, a3) {
-    a1.pause()
-    a2.pause()
-    a3.pause()
-}
-
-function NormalizeAudio(vol = 0.1){
-    heartAudio.volume = vol
-    heartAudio.playbackRate = 1.2
+    if (distance <= 25) {
+        GameSpace.style = "background-color: red;"
+    } 
 }
